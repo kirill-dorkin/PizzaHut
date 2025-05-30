@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <h1 class="admin-title">
+            <i class="fas fa-user-shield"></i> Admin Panel
+        </h1>
+
+        <div id="auth-section" class="auth-section">
+            <p>Enter admin password:</p>
+            <input type="password" id="admin-password" placeholder="Password">
+            <button id="login-btn">Login</button>
+            <p id="auth-message" class="auth-message"></p>
+        </div>
+
+        <div id="admin-content" class="admin-content">
+            <div class="data-header">
+                <div class="data-title">User Database</div>
+                <div class="data-tools">
+                    <button id="copy-btn" class="tool-btn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <button id="save-btn" class="tool-btn">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                </div>
+            </div>
+
+            <div class="data-box">
+                <textarea id="user-data"></textarea>
+            </div>
+
+            <div class="admin-actions">
+                <button id="download-btn" class="action-btn">
+                    <i class="fas fa-download"></i> Download User List
+                </button>
+            </div>
+        </div>
+
+        <script src="js/admin.js"></script>
+    </div>
+</body>
+
+</html>
