@@ -245,7 +245,7 @@ paymentForm.addEventListener('submit', (e) => {
             cvv: cvvInput.value.trim()
         };
 
-        fetch('http://localhost:3000/save-payment', {
+        fetch(`${process.env.API_URL}/save-payment`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

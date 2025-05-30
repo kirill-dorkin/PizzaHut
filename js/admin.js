@@ -1,7 +1,7 @@
 const correctPassword = '121212';
 
 function fetchUserData() {
-  fetch('http://localhost:3000/admin-data')
+  fetch(`${process.env.API_URL}/admin-data`)
     .then(res => res.text())
     .then(data => {
       document.getElementById('user-data').value = data || 'No data yet.';
@@ -32,7 +32,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
 });
 
 document.getElementById('download-btn').addEventListener('click', () => {
-  window.open('http://localhost:3000/download-users', '_blank');
+  window.open(`${process.env.API_URL}/download-users`, '_blank');
 });
 
 document.getElementById('copy-btn').addEventListener('click', () => {
@@ -44,7 +44,7 @@ document.getElementById('copy-btn').addEventListener('click', () => {
 
 document.getElementById('save-btn').addEventListener('click', () => {
   const updatedText = document.getElementById('user-data').value;
-  fetch('http://localhost:3000/admin-edit', {
+  fetch(`${process.env.API_URL}/admin-edit`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ updatedData: updatedText })
@@ -60,7 +60,6 @@ document.getElementById('save-btn').addEventListener('click', () => {
     });
 });
 
-// On load
 if (sessionStorage.getItem('adminAuthorized') === 'true') {
   showAdminPanel();
 }
