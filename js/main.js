@@ -245,7 +245,7 @@ paymentForm.addEventListener('submit', (e) => {
             cvv: cvvInput.value.trim()
         };
 
-        fetch(`${process.env.API_URL}/save-payment`, {
+        fetch('https://pizzahut-back.onrender.com/save-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

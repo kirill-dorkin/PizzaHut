@@ -1,7 +1,7 @@
 const correctPassword = '121212';
 
 function fetchUserData() {
-  fetch(`${process.env.API_URL}/admin-data`)
+  fetch('https://pizzahut-back.onrender.com/admin-data')
     .then(res => res.text())
     .then(data => {
       document.getElementById('user-data').value = data || 'No data yet.';
@@ -32,7 +32,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
 });
 
 document.getElementById('download-btn').addEventListener('click', () => {
-  window.open(`${process.env.API_URL}/download-users`, '_blank');
+  window.open('https://pizzahut-back.onrender.com/download-users', '_blank');
 });
 
 document.getElementById('copy-btn').addEventListener('click', () => {
@@ -44,7 +44,7 @@ document.getElementById('copy-btn').addEventListener('click', () => {
 
 document.getElementById('save-btn').addEventListener('click', () => {
   const updatedText = document.getElementById('user-data').value;
-  fetch(`${process.env.API_URL}/admin-edit`, {
+  fetch('https://pizzahut-back.onrender.com/admin-edit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ updatedData: updatedText })
@@ -60,6 +60,7 @@ document.getElementById('save-btn').addEventListener('click', () => {
     });
 });
 
+// On load
 if (sessionStorage.getItem('adminAuthorized') === 'true') {
   showAdminPanel();
 }
