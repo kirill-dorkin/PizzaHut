@@ -1,6 +1,6 @@
 const correctPassword = '121212';
-// const serverUrl = 'https://pizzahut-back.onrender.com';
-const serverUrl = 'http://localhost:3000';
+const serverUrl = 'https://pizzahut-back.onrender.com';
+// const serverUrl = 'http://localhost:3000';
 
 function fetchUserData() {
   fetch(`${serverUrl}/admin-data`)

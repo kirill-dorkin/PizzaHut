@@ -1,5 +1,5 @@
-// const serverUrl = 'https://pizzahut-back.onrender.com';
-const serverUrl = 'http://localhost:3000';
+const serverUrl = 'https://pizzahut-back.onrender.com';
+// const serverUrl = 'http://localhost:3000';
 
 /*~~~~~~~~~~~~~~~ MENU CONTROL ~~~~~~~~~~~~~~~*/
 const navMenu = document.getElementById("nav-menu");
