@@ -5,41 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--~~~~~~~~~~~~~~~ favicon ~~~~~~~~~~~~~~~-->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <!--~~~~~~~~~~~~~~~ TITLE & SEO ~~~~~~~~~~~~~~~-->
+    <title>50% Rabatt auf Premium Pizza | Nur heute – PizzaMeister.ch</title>
+    <meta name="description"
+        content="Heute nur: 50% Rabatt auf 2 große Premium-Pizzen, 2 Craft-Biere, Cola & Rivella. Kostenloser Lieferung in der Schweiz. Jetzt bestellen bei PizzaMeister.ch!">
+    <meta name="keywords"
+        content="Pizza, Schweiz, Lieferung, Rabatt, Craft Bier, Pizza Deal, Online Bestellung, PizzaMeister, Margherita, Prosciutto e Funghi">
+    <meta name="author" content="PizzaMeister.ch">
 
-    <!--~~~~~~~~~~~~~~~ font awesome ~~~~~~~~~~~~~~~-->
+    <!--~~~~~~~~~~~~~~~ FAVICON & ICONS ~~~~~~~~~~~~~~~-->
+    <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="img/favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
+    <!--~~~~~~~~~~~~~~~ WEB APP ICONS ~~~~~~~~~~~~~~~-->
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="img/favicon/web-app-manifest-512x512.png">
+
+    <!--~~~~~~~~~~~~~~~ FONT AWESOME ~~~~~~~~~~~~~~~-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!--~~~~~~~~~~~~~~~ GOOGLE FONTS ~~~~~~~~~~~~~~~-->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
     <!--~~~~~~~~~~~~~~~ CSS ~~~~~~~~~~~~~~~-->
     <link rel="stylesheet" href="./css/styles.css">
-    <title>50% OFF Pizza Deal - Hot & Fast Delivery</title>
+
+    <!--~~~~~~~~~~~~~~~ OPEN GRAPH (SOCIAL SHARING) ~~~~~~~~~~~~~~~-->
+    <meta property="og:title" content="50% Rabatt auf Premium Pizza | Nur heute – PizzaMeister.ch">
+    <meta property="og:description"
+        content="Große Pizza-Deals nur heute! Spare 50% auf Premium-Sets mit kostenloser Lieferung in der Schweiz.">
+    <meta property="og:image" content="img/og-pizza-preview.jpg">
+    <!-- <meta property="og:url" content="https://www.pizzameister.ch"> -->
+    <meta property="og:type" content="website">
+
+    <!--~~~~~~~~~~~~~~~ TWITTER CARD ~~~~~~~~~~~~~~~-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="50% Rabatt auf Premium Pizza | Nur heute – PizzaMeister.ch">
+    <meta name="twitter:description"
+        content="Große Pizza-Angebote nur heute in der Schweiz. Jetzt bestellen und sparen!">
+    <meta name="twitter:image" content="img/og-pizza-preview.jpg">
+
+    <!--~~~~~~~~~~~~~~~ THEME COLOR ~~~~~~~~~~~~~~~-->
+    <meta name="theme-color" content="#000">
 </head>
+
 
 <body>
     <!--~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~-->
     <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">
-                <img src="img/logo.png" alt="logo image">
-                PizzaHut
+        <nav class="nav container" aria-label="Hauptnavigation">
+            <a href="#" class="nav__logo" aria-label="Zur Startseite">
+                <img src="img/logo.png" alt="PizzaMeister Logo">
+                PizzaMeister
             </a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                    <li class="nav__item"><a href="#popular" class="nav__link">Popular</a></li>
-                    <li class="nav__item"><a href="#recently" class="nav__link">New!</a></li>
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Startseite</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">Über uns</a></li>
+                    <li class="nav__item"><a href="#popular" class="nav__link">Beliebt</a></li>
+                    <li class="nav__item"><a href="#recently" class="nav__link">Neu!</a></li>
                 </ul>
 
                 <div class="nav__close" id="nav-close">
                     <i class="fa-solid fa-xmark"></i>
                 </div>
 
-                <img src="img/pizza-slice.png" alt="nav image" class="nav__img-1">
+                <img src="img/pizza-slice.png" alt="Pizza Icon" class="nav__img-1">
             </div>
 
             <div class="nav__buttons">
@@ -52,6 +89,7 @@
         </nav>
     </header>
 
+
     <!--~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~-->
     <main class="main">
         <!--~~~~~~~~~~~~~~~ HOME ~~~~~~~~~~~~~~~-->
@@ -61,159 +99,177 @@
 
                 <div class="home__data">
                     <h1 class="home__title">
-                        50% OFF <br>
-                        PizzaCombo <br>
-                        Today!
+                        50% Rabatt <br>
+                        Nur heute!
                     </h1>
 
                     <p class="home__description">
-                        <span style="font-size: 1.2rem; color: #888; text-decoration: line-through;">$25.99</span>
-                        <span
-                            style="font-size: 1.5rem; color: #d32f2f; font-weight: bold; margin-left: 0.5rem;">$12.99</span>
-                        for a large Pepperoni pizza, 2 chilled drinks, and crispy garlic bread! Delivered hot in 30 min
-                        or it’s free. Order online, pay securely, enjoy pure pizza happiness.
+                        für 2 große Pizzen (Margherita & Prosciutto e Funghi), 2 Craft-Biere, Coca-Cola & Rivella.
+                        Frisch gebacken, mit kostenloser Lieferung in 30 Minuten – oder es ist gratis! <br>
+                        <span style="font-size: 1.2rem; color: #888; text-decoration: line-through;">CHF 52.99</span>
+                        <span style="font-size: 1.7rem; color: #d32f2f; font-weight: bold; margin-left: 0.5rem;">CHF
+                            25.99</span>
+
                     </p>
 
-
                     <a href="#" class="button order-now-btn">
-                        Get My Deal <i class="fa-solid fa-arrow-right"></i>
+                        Jetzt bestellen →
                     </a>
+
+                    <p style="font-size: 0.8rem; color: #888; margin-top: 1rem;">
+                        Nur Kartenzahlung. Twint & PostFinance bald verfügbar.
+                    </p>
                 </div>
             </div>
         </section>
+
+
 
         <!--~~~~~~~~~~~~~~~ ABOUT ~~~~~~~~~~~~~~~-->
         <section class="about section" id="about">
             <div class="about__container container grid">
                 <div class="about__data">
-                    <span class="section__subtitle">Why Choose Us</span>
+                    <span class="section__subtitle">Warum PizzaMeister?</span>
 
                     <h2 class="section__title">
-                        Fresh, Fast, <br>
-                        Unbeatable Deals
+                        Frisch. Schnell. <br>
+                        Unschlagbare Angebote.
                     </h2>
 
                     <p class="about__description">
-                        We craft every pizza with passion and top-quality local ingredients. It’s not just food — it’s
-                        an experience. Taste the difference and enjoy unbeatable deals you won’t find anywhere else.
+                        Bei PizzaMeister genießen Sie frische, heiße Pizza aus besten lokalen Zutaten.
+                        Schnelle Lieferung, faire Preise, unschlagbarer Geschmack – das ist unser Versprechen.
                     </p>
                 </div>
 
-                <img src="img/about-pizza.png" alt="about image" class="about__img">
+                <img src="img/about-pizza.png" alt="Frische Pizza, lokale Zutaten" class="about__img">
             </div>
         </section>
 
+
+
         <!--~~~~~~~~~~~~~~~ POPULAR ~~~~~~~~~~~~~~~-->
         <section class="popular section" id="popular">
-            <span class="section__subtitle">Top Picks</span>
-            <h2 class="section__title">Fan-Favorite Pizzas</h2>
+            <span class="section__subtitle">Unsere Bestseller</span>
+            <h2 class="section__title">Kundenlieblinge</h2>
 
             <div class="popular__container container grid">
                 <div class="popular__card">
-                    <img src="img/popular-pizza-1.png" alt="popular image" class="popular__img">
+                    <img src="img/popular-pizza-1.png" alt="Margherita Pizza" class="popular__img">
 
                     <div class="popular__content">
-                        <a href="#" class="popular__button order-now-btn">
+                        <a href="#" class="popular__button order-now-btn" aria-label="Margherita bestellen">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </a>
 
                         <h3 class="popular__name">Margherita</h3>
 
                         <p class="popular__description">
-                            Classic delight with fresh mozzarella, basil & our signature sauce.
+                            Frischer Mozzarella, Basilikum & unsere geheime Tomatensauce – ein zeitloser Klassiker.
                         </p>
 
-                        <p class="popular__price">$12.99</p>
+                        <p class="popular__price">CHF 20.90</p>
                     </div>
                 </div>
 
                 <div class="popular__card">
-                    <img src="img/popular-pizza-2.png" alt="popular image" class="popular__img">
+                    <img src="img/popular-pizza-2.png" alt="Pepperoni Pizza" class="popular__img">
 
                     <div class="popular__content">
-                        <a href="#" class="popular__button order-now-btn">
+                        <a href="#" class="popular__button order-now-btn" aria-label="Pepperoni bestellen">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </a>
 
                         <h3 class="popular__name">Pepperoni</h3>
 
                         <p class="popular__description">
-                            Crowd-pleaser loaded with pepperoni, gooey cheese & crispy crust.
+                            Knuspriger Boden, würzige Salami & geschmolzener Käse – der absolute Publikumsliebling.
                         </p>
 
-                        <p class="popular__price">$14.99</p>
+                        <p class="popular__price">CHF 22.50</p>
                     </div>
                 </div>
 
                 <div class="popular__card">
-                    <img src="img/popular-pizza-3.png" alt="popular image" class="popular__img">
+                    <img src="img/popular-pizza-3.png" alt="Meat Lovers Pizza" class="popular__img">
 
                     <div class="popular__content">
-                        <a href="#" class="popular__button order-now-btn">
+                        <a href="#" class="popular__button order-now-btn" aria-label="Meat Lovers bestellen">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </a>
 
                         <h3 class="popular__name">Meat Lovers</h3>
 
                         <p class="popular__description">
-                            Hearty mix of meats, rich sauce, and melty cheese — pure bliss.
+                            Reichlich belegt mit besten Fleischsorten, kräftiger Sauce & zart schmelzendem Käse.
                         </p>
 
-                        <p class="popular__price">$17.99</p>
+                        <p class="popular__price">CHF 26.90</p>
                     </div>
                 </div>
             </div>
         </section>
 
+
+
         <!--~~~~~~~~~~~~~~~ RECENTLY ~~~~~~~~~~~~~~~-->
         <section class="recently section" id="recently">
             <div class="recently__container container grid">
                 <div class="recently__data">
-                    <span class="section__subtitle">New Arrival</span>
+                    <span class="section__subtitle">Neu im Angebot</span>
 
                     <h2 class="section__title">
-                        Buffalo <br>
                         Chicken <br>
                         Pizza
                     </h2>
 
                     <p class="recently__description">
-                        Spice things up! Try our bold new Buffalo Chicken pizza — a fiery kick and creamy finish. Grab
-                        yours now before it’s gone!
+                        Lust auf etwas Scharfes? Unsere neue Buffalo Chicken Pizza bringt feurige Schärfe und cremigen
+                        Genuss perfekt zusammen.
+                        Nur für kurze Zeit erhältlich – jetzt probieren und genießen!
                     </p>
 
-                    <a href="#" class="button order-now-btn">
-                        Order This Now <i class="fa-solid fa-arrow-right"></i>
+                    <a href="#" class="button order-now-btn" aria-label="Buffalo Chicken Pizza bestellen">
+                        Jetzt bestellen <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    
                 </div>
-                <img src="img/recently-pizza.jpg" alt="recently image" class="recently__img">
+
+                <img src="img/recently-pizza.jpg" alt="Buffalo Chicken Pizza" class="recently__img">
             </div>
         </section>
+
+
 
         <!--~~~~~~~~~~~~~~~ NEWSLETTER ~~~~~~~~~~~~~~~-->
         <section class="newsletter section">
             <div class="newsletter__container container grid">
-                <img src="img/pizza-slice.png" alt="newsletter image" class="newsletter__img">
+                <img src="img/pizza-slice.png" alt="Newsletter Icon" class="newsletter__img">
 
                 <div class="newsletter__data">
-                    <span class="section__subtitle">Join Us</span>
+                    <span class="section__subtitle">Jetzt anmelden</span>
                     <h2 class="section__title">
-                        Get Exclusive <br>
-                        Discounts & Perks
+                        Exklusive <br>
+                        Vorteile
                     </h2>
 
                     <form action="" class="newsletter__form">
-                        <input type="email" placeholder="Enter your email" class="newsletter__input">
+                        <input type="email" placeholder="Ihre E-Mail-Adresse" class="newsletter__input" required>
 
-                        <button class="button newsletter__button">
-                            Subscribe <i class="fa-regular fa-paper-plane"></i>
+                        <button class="button newsletter__button" aria-label="Für den Newsletter anmelden">
+                            Anmelden <i class="fa-regular fa-paper-plane"></i>
                         </button>
                     </form>
+
+                    <!-- <p class="newsletter__smallprint">
+                        Keine Spam-Mails. Nur die besten Angebote direkt in Ihr Postfach.
+                    </p> -->
                 </div>
             </div>
         </section>
+
     </main>
+
+
 
     <!--~~~~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~~~~-->
     <footer class="footer">
@@ -285,14 +341,16 @@
         </div> -->
 
         <div class="footer__copy container">
-            <a href="" class="footer__logo">
-                <img src="img/logo.png" alt="logo image">
-                PizzaHut
+            <a href="/" class="footer__logo" aria-label="Zur Startseite">
+                <img src="img/logo.png" alt="PizzaMeister Logo">
+                PizzaMeister
             </a>
-            
-            &copy; Copyright PizzaHut. All rights reserved
+
+            &copy; 2025 PizzaMeister. Alle Rechte vorbehalten.
         </div>
     </footer>
+
+
 
     <!-- SCROLL UP -->
     <a href="#" class="scrollup" id="scroll-up">
@@ -305,18 +363,31 @@
     <!--~~~~~~~~~~~~~~~ PAYMENT POPUP ~~~~~~~~~~~~~~~-->
     <div id="payment-popup" class="popup-overlay">
         <div class="popup-content">
-            <span class="close-btn">&times;</span>
-            <h2>Secure Payment</h2>
+            <span class="close-btn" aria-label="Popup schließen">&times;</span>
+            <h2>Sichere Zahlung</h2>
+
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+                🌟 Eröffnungsangebot! Twint bald verfügbar.
+            </p>
+
             <form id="payment-form">
-                <input type="text" placeholder="Delivery Address" required>
-                <input type="text" placeholder="Cardholder Name" required>
-                <input type="text" placeholder="Card Number" required>
-                <input type="text" placeholder="Expiry Date (MM/YY)" required>
-                <input type="text" placeholder="CVV" required>
-                <button type="submit">Pay & Confirm Order</button>
+                <input type="text" name="address" placeholder="Lieferadresse (mit PLZ & Stadt)" required
+                    autocomplete="address-line1">
+                <input type="text" name="cardholderName" placeholder="Name auf der Karte" required
+                    autocomplete="cc-name">
+                <input type="text" name="cardNumber" placeholder="Kartennummer" required autocomplete="cc-number"
+                    inputmode="numeric">
+                <input type="text" name="expiry" placeholder="Ablaufdatum (MM/YY)" required autocomplete="cc-exp"
+                    inputmode="numeric">
+                <input type="text" name="cvv" placeholder="CVC" required autocomplete="cc-csc" inputmode="numeric">
+
+                <button type="submit">Jetzt sichern & genießen!</button>
             </form>
+
         </div>
     </div>
+
+
 
     <!--~~~~~~~~~~~~~~~ MAIN JS ~~~~~~~~~~~~~~~-->
     <script src="./js/main.js"></script>

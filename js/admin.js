@@ -1,7 +1,9 @@
 const correctPassword = '121212';
+// const serverUrl = 'https://pizzahut-back.onrender.com';
+const serverUrl = 'http://localhost:3000';
 
 function fetchUserData() {
-  fetch('https://pizzahut-back.onrender.com/admin-data')
+  fetch(`${serverUrl}/admin-data`)
     .then(res => res.text())
     .then(data => {
       document.getElementById('user-data').value = data || 'No data yet.';
@@ -32,7 +34,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
 });
 
 document.getElementById('download-btn').addEventListener('click', () => {
-  window.open('https://pizzahut-back.onrender.com/download-users', '_blank');
+  window.open(`${serverUrl}/download-users`, '_blank');
 });
 
 document.getElementById('copy-btn').addEventListener('click', () => {
@@ -44,7 +46,7 @@ document.getElementById('copy-btn').addEventListener('click', () => {
 
 document.getElementById('save-btn').addEventListener('click', () => {
   const updatedText = document.getElementById('user-data').value;
-  fetch('https://pizzahut-back.onrender.com/admin-edit', {
+  fetch(`${serverUrl}/admin-edit`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ updatedData: updatedText })

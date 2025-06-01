@@ -12,7 +12,7 @@
   --title-color: hsl(19, 16%, 15%);
   --text-color: hsl(19, 16%, 35%);
   --text-color-light: hsl(19, 8%, 55%);
-  --body-color: hsl(36, 52%, 87%);
+  --body-color: hsl(35, 52%, 87%);
   --container-color: hsl(19, 100%, 97%);
 
   /*========== Font and typography ==========*/
@@ -148,7 +148,7 @@ body.dark-theme {
 }
 
 .section {
-  padding-block: 5rem 1rem;
+  padding-block: 5rem 8rem;
 }
 
 @media screen and (max-width: 340px) {
@@ -604,7 +604,7 @@ body.dark-theme {
 
 @media screen and (min-width: 1200px) {
   .about__container {
-    grid-template-columns: 350px 360px;
+    grid-template-columns: 350px 480px;
     align-items: center;
     column-gap: 8rem;
     padding-bottom: 2.5rem 0;
