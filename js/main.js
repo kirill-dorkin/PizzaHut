@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     showSuccessMessage('Zahlung erfolgreich gespeichert (Demo)');
                     closePopupSmoothly();
                 })
-                .catch(err => { console.error('Error:', err); alert('Fehler beim Speichern der Daten'); });
+                .catch(err => { console.error('Error:', err); });
         }
     });
 
