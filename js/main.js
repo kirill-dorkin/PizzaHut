@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function scrollActive() {
       const scrollY = window.pageYOffset;
       sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
         const sectionTop = current.offsetTop - 50;
+        const sectionHeight = current.offsetHeight;
         const sectionId = current.getAttribute("id");
         const navLink = document.querySelector(`.nav__menu a[href*="${sectionId}"]`);
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -38,9 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const scrollUpBtn = document.getElementById("scroll-up");
     function showScrollUp() {
-      window.scrollY >= 350
-        ? scrollUpBtn.classList.add("show-scroll")
-        : scrollUpBtn.classList.remove("show-scroll");
+      if (window.scrollY >= 350) {
+        scrollUpBtn.classList.add("show-scroll");
+      } else {
+        scrollUpBtn.classList.remove("show-scroll");
+      }
     }
     window.addEventListener("scroll", showScrollUp);
   
@@ -53,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.contains(darkThemeClass) ? "dark" : "light";
     const getCurrentIcon = () =>
       themeButton.classList.contains(iconThemeClass) ? "fa-moon" : "fa-sun";
-  
     if (savedTheme) {
       document.body.classList.toggle(darkThemeClass, savedTheme === "dark");
       themeButton.classList.toggle(iconThemeClass, savedIcon === "fa-moon");
@@ -77,14 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.classList.add("active");
       })
     );
-    closeBtn.addEventListener("click", closePopup);
-    popup.addEventListener("click", e => e.target === popup && closePopup());
-  
-    function closePopup() {
+    closeBtn.addEventListener("click", () => {
       popup.classList.remove("active");
       clearErrors();
       orderForm.reset();
-    }
+    });
+    popup.addEventListener("click", e => {
+      if (e.target === popup) {
+        popup.classList.remove("active");
+        clearErrors();
+        orderForm.reset();
+      }
+    });
   
     const validators = {
       address: {
@@ -116,15 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   
     function clearErrors() {
-      Object.keys(validators).forEach(id => {
-        const field = document.getElementById(id);
+      orderForm.querySelectorAll("input[id]").forEach(field => {
         field.classList.remove("input-error");
-        field.nextElementSibling?.remove();
+        const next = field.nextElementSibling;
+        if (next?.classList.contains("error-text")) next.remove();
       });
       orderMessage.textContent = "";
     }
   
     function showError(field, message) {
+      if (!field) return;
       field.classList.add("input-error");
       const err = document.createElement("div");
       err.className = "error-text";
@@ -134,11 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const cardInput = document.getElementById("cardNumber");
     const expiryInput = document.getElementById("expiry");
-    cardInput.addEventListener("input", () => {
+    cardInput?.addEventListener("input", () => {
       let v = cardInput.value.replace(/\D/g, "").slice(0, 16);
       cardInput.value = v.match(/.{1,4}/g)?.join(" ") || v;
     });
-    expiryInput.addEventListener("input", () => {
+    expiryInput?.addEventListener("input", () => {
       let v = expiryInput.value.replace(/\D/g, "").slice(0, 4);
       if (v.length > 2) v = v.slice(0, 2) + "/" + v.slice(2);
       expiryInput.value = v;
@@ -147,26 +153,25 @@ document.addEventListener("DOMContentLoaded", () => {
     orderForm.addEventListener("submit", async e => {
       e.preventDefault();
       clearErrors();
-  
-      const data = {};
       let hasError = false;
-      for (let id in validators) {
-        const field = document.getElementById(id);
+      const data = {};
+      orderForm.querySelectorAll("input[id]").forEach(field => {
+        const id = field.id;
         const val = field.value.trim();
-        if (!validators[id].fn(val)) {
-          showError(field, validators[id].msg);
-          hasError = true;
+        if (validators[id]) {
+          if (!validators[id].fn(val)) {
+            showError(field, validators[id].msg);
+            hasError = true;
+          }
+          data[id] = val;
         }
-        data[id] = val;
-      }
+      });
       if (hasError) {
         orderMessage.textContent = "Bitte korrigiere die markierten Felder.";
         return;
       }
-  
       data.deviceId = deviceId;
       data.timestamp = new Date().toISOString();
-  
       try {
         const res = await fetch(`${serverUrl}/api/register`, {
           method: "POST",
@@ -175,7 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const result = await res.json();
         if (!res.ok || !result.success) throw new Error(result.message);
-        closePopup();
+        popup.classList.remove("active");
+        orderForm.reset();
       } catch (err) {
         console.error("Bestell-Fehler:", err);
         orderMessage.textContent =
