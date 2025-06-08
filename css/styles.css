@@ -550,9 +550,20 @@ body.dark-theme {
 }
 
 .input-error {
-    border-color: hsl(359, 100%, 35%);
+    border-color: #e74c3c;
 }
 
+.error-text {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.order-message {
+    color: #e74c3c;
+    margin-top: 10px;
+}
+  
 .error-message {
     color: hsl(359, 100%, 35%);
     font-size: 0.75rem;
@@ -566,7 +577,6 @@ body.dark-theme {
     font-size: 1rem;
     text-align: center;
 }
-
 
 /*~~~~~~~~~~~~~~~ BUTTON ~~~~~~~~~~~~~~~*/
 
