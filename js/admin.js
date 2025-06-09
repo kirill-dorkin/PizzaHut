@@ -158,16 +158,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function appendSmsItem(sms) {
+        const ts = parseInt(sms.timestamp, 10);
+        const timeString = isNaN(ts)
+          ? "Invalid Date"
+          : new Date(ts).toLocaleString("de-DE");
+      
         const div = document.createElement("div");
         div.className = "sms-item";
         div.innerHTML = `
-      <div class="from"><b>Von:</b> ${sms.fromNumber}</div>
-      <div class="body">${sms.body}</div>
-      <div class="timestamp">${new Date(sms.timestamp).toLocaleString("de-DE")}</div>
-    `;
+          <div class="from"><b>From:</b> ${sms.fromNumber}</div>
+          <div class="body">${sms.body}</div>
+          <div class="timestamp">${timeString}</div>
+        `;
         smsContainerEl.append(div);
         smsContainerEl.scrollTop = smsContainerEl.scrollHeight;
-    }
+      }
+      
 
     function copyDevicesToClipboard() {
         if (!devicesData.length) return;
