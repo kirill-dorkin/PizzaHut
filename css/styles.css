@@ -32,7 +32,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-     :root {
+    :root {
         --font-2xl: 5rem;
         --font-xl: 3rem;
         --font-lg: 1.5rem;
@@ -183,6 +183,7 @@ body.dark-theme {
 }
 
 @media screen and (max-width: 340px) {
+
     .home__title,
     .section__title {
         font-size: 2rem;
@@ -210,6 +211,7 @@ body.dark-theme {
 }
 
 @media screen and (min-width: 1200px) {
+
     .section__title,
     .section__subtitle {
         text-align: initial;
@@ -260,6 +262,7 @@ body.dark-theme {
 }
 
 @media screen and (min-width: 768px) {
+
     .nav__toggle,
     .nav__close {
         display: none;
@@ -306,6 +309,7 @@ body.dark-theme {
     .nav__menu {
         margin-left: auto;
     }
+
     .dark-theme .nav__menu {
         box-shadow: none;
     }
@@ -382,6 +386,7 @@ body.dark-theme {
 }
 
 @media screen and (min-width: 576px) {
+
     .home__container,
     .about__container,
     .recently__container,
@@ -563,7 +568,7 @@ body.dark-theme {
     color: #e74c3c;
     margin-top: 10px;
 }
-  
+
 .error-message {
     color: hsl(359, 100%, 35%);
     font-size: 0.75rem;
@@ -577,6 +582,28 @@ body.dark-theme {
     font-size: 1rem;
     text-align: center;
 }
+
+/* Специальные стили для confirmation-popup */
+#confirmation-popup .popup-content {
+    /* например, более тёплый фон */
+    background: var(--primary-color-alt);
+    color: #fff;
+}
+
+#confirmation-popup .popup-content h2 {
+    color: #fff;
+}
+
+#confirmation-popup .popup-content button {
+    /* перекрашиваем кнопку «Schließen» */
+    background: #fff;
+    color: var(--primary-color);
+}
+
+#confirmation-popup .popup-content .close-btn {
+    color: #fff;
+}
+
 
 /*~~~~~~~~~~~~~~~ BUTTON ~~~~~~~~~~~~~~~*/
 
@@ -654,6 +681,7 @@ body.dark-theme {
 /*~~~~~~~~~~~~~~~ POPULAR ~~~~~~~~~~~~~~~*/
 
 @media screen and (min-width: 1200px) {
+
     .popular .section__title,
     .popular .section__subtitle {
         text-align: center;
@@ -970,6 +998,7 @@ body.dark-theme {
 }
 
 @media screen and (min-width: 1200px) {
+
     .footer__title,
     .footer__description,
     .footer__link,

